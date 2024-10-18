@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.name }} Reviews</title>
+</head>
+<body>
+    <h1>{{ movie.name }} Reviews</h1>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.source }}: {{ review.rating }} - {{ review.comment }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Submit a Review</h2>
+    <form action="/movie/{{ movie.id }}/submit" method="POST">
+        <label for="source">Source:</label>
+        <input type="text" name="source" id="source" placeholder="IMDb, Rotten Tomatoes, etc."><br>
+        
+        <label for="rating">Rating:</label>
+        <input type="number" step="0.1" name="rating" id="rating" placeholder="Rating (e.g. 8.5)"><br>
+
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" placeholder="Write your review here"></textarea><br>
+        
+        <input type="submit" value="Submit Review">
+    </form>
+
+    <a href="/">Back to Movies</a>
+</body>
+</html>
